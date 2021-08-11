@@ -27,6 +27,12 @@ class Item
     end
   end
 
+  def bidders_info
+    @bids.keys.map do |bidder|
+      bidder
+    end
+  end
+
   def close_bidding
     @open = false
   end

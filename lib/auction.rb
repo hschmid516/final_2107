@@ -50,7 +50,7 @@ class Auction
 
   def attendees
     @items.compact.flat_map do |item|
-      item.bids.keys
+      item.bidders_info
     end.uniq
   end
 
