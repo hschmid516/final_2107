@@ -1,8 +1,9 @@
 class Auction
-  attr_reader :items
+  attr_reader :items, :date
 
   def initialize
     @items = []
+    @date = Date.today.strftime('%d/%m/%Y')
   end
 
   def add_item(item)
@@ -56,6 +57,23 @@ class Auction
   def items_by_bidder(attendee)
     @items.find_all do |item|
       item.bidders.include?(attendee.name)
+    end
+  end
+
+  def close_auction
+    sell_items
+    @items.each_with_object({}) do |item, acc|
+      if item.bids == {}
+        acc[item] = 'Not Sold'
+      else
+        acc[item] = item.current_high_bidder[0]
+      end
+    end
+  end
+
+  def sell_items
+    @items.each do |item|
+      item.close_bidding
     end
   end
 end
