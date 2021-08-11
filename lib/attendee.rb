@@ -3,6 +3,6 @@ class Attendee
 
   def initialize(params)
     @name = params[:name]
-    @budget = params[:budget]
+    @budget = params[:budget].delete('$').to_i
   end
 end
