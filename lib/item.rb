@@ -19,4 +19,10 @@ class Item
       bid
     end
   end
+
+  def bidders
+    @bids.keys.map do |bidder|
+      bidder.name
+    end
+  end
 end
